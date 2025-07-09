@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Spot the Unsafe Acts</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-YAnxN4YDb3Omd98ZuwBGWtoFDDv7UzvM0PbU3rSyE4UC4sEBiohtOt78zU6/vQvQdxzGr6uH7Zq9LnMwU+PK9g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Firebase SDK -->
+    <script type="module" src="script.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <canvas id="bgCanvas"></canvas>
+
+    <header class="game-header">
+      <h1>
+        <span class="icon">🚧</span> Spot the Unsafe Acts
+        <span class="icon">🕵️‍♀️</span>
+      </h1>
+      <p class="game-instructions">
+        🕒 You’ve got <strong>60 seconds</strong> to find
+        <strong>100 safety violations</strong>. Ready, safety officer? <br />
+        Click on the image to mark them!
+      </p>
+    </header>
+
+    <div id="palette">
+      <button onclick="setColor('red')" style="background: red"></button>
+      <button onclick="setColor('yellow')" style="background: yellow"></button>
+      <button onclick="setColor('green')" style="background: green"></button>
+    </div>
+
+    <canvas id="gameCanvas" width="1024" height="1024"></canvas>
+    <div class="bottom">
+      <p id="timer">Time left: 60s</p>
+
+      <button onclick="undoLastClick()" id="undoBtn" title="Undo Last">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="22"
+          height="22"
+          viewbox="0 0 24 24"
+          fill="none"
+          stroke="#74C0FC"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M3 7v6h6"></path>
+          <path d="M21 17A9 9 0 0 0 6.7 6.7L3 13"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div id="nameModal" class="modal">
+      <div class="modal-content">
+        <h2>⏰ Time’s Up!</h2>
+        <p>Enter your name to submit your results:</p>
+        <input type="text" id="playerName" placeholder="Your name..." />
+        <input type="email" id="playerEmail" placeholder="Your email..." />
+
+        <div class="modal-buttons">
+          <button onclick="confirmSubmission()">Submit</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="thankYouScreen" class="thank-you hidden">
+      <div class="thank-wrapper">
+        <span class="popper left">🎊</span>
+        <div class="thank-text">
+          <h1 class="thank-title">Thank You for Playing!</h1>
+          <p class="thank-subtitle">You're a true Safety Hero 👷‍♀️👷‍♂️</p>
+        </div>
+        <span class="popper right">🎊</span>
+      </div>
+      <div class="confetti"></div>
+      <canvas id="fireworksCanvas"></canvas>
+    </div>
+
+    <audio
+      id="yaySound"
+      src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_21b4b279f1.mp3?filename=small-crowd-cheer-101636.mp3"
+      preload="auto"
+    ></audio>
+  </body>
+</html>
